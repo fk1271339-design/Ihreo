@@ -1,0 +1,10 @@
+/* Override for mission card headings visibility */
+.mission-card h3 {
+    color: white !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.mission-card p {
+    color: white !important;
+}

@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# If the request is NOT a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# If requested URL + .html file exists
+RewriteCond %{REQUEST_FILENAME}.html -f
+
+# Internally rewrite clean URL to .html
+RewriteRule ^([^/]+)$ $1.html [L]
+
+# Redirect .html URLs to clean version (SEO friendly)
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?]
+RewriteRule ^ %1 [R=301,L]

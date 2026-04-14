@@ -1,0 +1,243 @@
+/* ===== NAVBAR FIX - Colorful Animated Navbar ===== */
+
+/* Navigation Menu - Horizontal Layout */
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Navigation Links - Colorful with Animations */
+.nav-link {
+    font-weight: 600 !important;
+    color: #1e40af !important;
+    position: relative !important;
+    padding: 0.75rem 1.25rem !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+    border-radius: 10px !important;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(59, 130, 246, 0.05)) !important;
+    overflow: hidden !important;
+    text-transform: capitalize !important;
+}
+
+/* Animated Underline Effect */
+.nav-link::before {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6, #10b981) !important;
+    transition: all 0.4s ease !important;
+    transform: translateX(-50%) !important;
+    border-radius: 10px !important;
+}
+
+/* Animated Background Glow */
+.nav-link::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1)) !important;
+    opacity: 0 !important;
+    transition: opacity 0.4s ease !important;
+    z-index: -1 !important;
+    border-radius: 10px !important;
+}
+
+/* Hover Effects */
+.nav-link:hover {
+    color: #8b5cf6 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3) !important;
+}
+
+.nav-link:hover::before {
+    width: 80% !important;
+}
+
+.nav-link:hover::after {
+    opacity: 1 !important;
+}
+
+/* Active Link - Special Styling */
+.nav-link.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%) !important;
+    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.nav-link.active::before {
+    width: 0 !important;
+}
+
+.nav-link.active::after {
+    opacity: 0 !important;
+}
+
+/* Pulse Animation for Active Link */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translateY(-2px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-2px) scale(1.05);
+    }
+}
+
+.nav-link.active {
+    animation: pulse 2s ease-in-out infinite !important;
+}
+
+/* Admin Link - Special Gradient Button */
+.admin-link {
+    background: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #dc2626 100%) !important;
+    color: #ffffff !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 25px !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    pointer-events: all !important;
+    display: inline-block !important;
+    font-weight: 700 !important;
+    margin-left: 0.5rem !important;
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Admin Link Shine Effect */
+.admin-link::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
+    transform: rotate(45deg) !important;
+    animation: shine 3s ease-in-out infinite !important;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.admin-link::after {
+    display: none !important;
+}
+
+.admin-link:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 15px 35px rgba(239, 68, 68, 0.5) !important;
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f59e0b 100%) !important;
+}
+
+/* Nav Toggle (Mobile Menu Button) */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Logo Text - Animated Gradient */
+.logo-text {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6, #10b981) !important;
+    background-size: 300% 300% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: gradientShift 3s ease infinite !important;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Navbar - Enhanced */
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        flex-direction: column !important;
+        padding: 1rem !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        display: none !important;
+        gap: 0.5rem !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .nav-link {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .admin-link {
+        margin-left: 0 !important;
+        margin-top: 0.5rem !important;
+        text-align: center !important;
+    }
+}

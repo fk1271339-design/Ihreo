@@ -1,0 +1,245 @@
+/* ===== HERO SECTION STYLES - SAME FOR ALL PAGES ===== */
+
+.hero-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%) !important;
+    color: white !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 2rem !important;
+}
+
+.hero-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 1 !important;
+}
+
+.hero-content {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.hero-title {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 3.5rem !important;
+    margin-bottom: 1rem !important;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+    animation: fadeInDown 0.8s ease-out !important;
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    animation: fadeInUp 0.8s ease-out !important;
+}
+
+/* Awards Hero - Same Blue Style */
+.awards-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%) !important;
+    padding: 10rem 0 6rem !important;
+    color: white !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.awards-hero-title {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 3.5rem !important;
+    margin-bottom: 1rem !important;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.awards-hero-subtitle {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Titles - Orange Gradient */
+.section-title {
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899) !important;
+    background-size: 200% 200% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: gradientFlow 3s ease infinite !important;
+    font-weight: 800 !important;
+}
+
+@keyframes gradientFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Animated Underline - Purple */
+.title-underline {
+    height: 5px !important;
+    width: 100px !important;
+    background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc) !important;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Stat Numbers */
+.stat-number {
+    background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 900 !important;
+    font-size: 3rem !important;
+}
+
+.stat-text {
+    color: #475569 !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+}
+
+.stat-icon {
+    font-size: 3rem !important;
+}
+
+/* Award Cards */
+.award-card h3 {
+    background: linear-gradient(135deg, #f59e0b, #ef4444) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 700 !important;
+}
+
+.award-icon {
+    font-size: 3.5rem !important;
+    filter: drop-shadow(0 8px 20px rgba(245, 158, 11, 0.4)) !important;
+    animation: pulse 2s ease-in-out infinite !important;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.award-register-btn {
+    background: linear-gradient(135deg, #f59e0b, #ef4444) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 0.75rem 1.5rem !important;
+    border: none !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.award-register-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 0.75rem 2rem !important;
+    border-radius: 10px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6) !important;
+}
+
+.btn-secondary {
+    background: transparent !important;
+    border: 3px solid white !important;
+    color: white !important;
+    font-weight: 700 !important;
+    padding: 0.75rem 2rem !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-secondary:hover {
+    background: white !important;
+    color: #8b5cf6 !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Footer */
+.footer h3,
+.footer h4 {
+    background: linear-gradient(135deg, #3b82f6, #10b981) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 700 !important;
+}
