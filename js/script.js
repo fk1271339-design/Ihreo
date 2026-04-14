@@ -19,16 +19,6 @@ if (navToggle && navMenu) {
   });
 }
 
-// Contact Form - Disabled: EmailJS handles form submission in contact.html
-// const contactForm = document.getElementById('contactForm');
-// if (contactForm) {
-//     contactForm.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         alert('Thank you for your message!');
-//         contactForm.reset();
-//     });
-// }
-
 // Animated Counter for Statistics
 function animateCounter(element, target, duration = 2000) {
   let start = 0;
@@ -133,3 +123,34 @@ if (reviewsCarousel) {
     reviewsCarousel.appendChild(clone);
   });
 }
+
+// ===================================================
+// PAGE TRANSITION LOGIC
+// ===================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.querySelector(".pt-overlay");
+
+  if (overlay) {
+    // 1. Entry Animation
+    setTimeout(() => {
+      overlay.classList.add("exit");
+    }, 400);
+
+    // 2. Navigation Click Handling
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        
+        if (href && href.endsWith(".html") && !href.startsWith("http")) {
+          e.preventDefault();
+          overlay.classList.remove("exit");
+          overlay.classList.add("active");
+
+          setTimeout(() => {
+            window.location.href = href;
+          }, 600);
+        }
+      });
+    });
+  }
+});
