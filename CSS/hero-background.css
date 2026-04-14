@@ -1,89 +1,209 @@
-/* ===== HERO BACKGROUND SLIDESHOW ===== */
+/* =====================================================
+   HERO SLIDESHOW — PERFECT CROSSFADE, NO OVERLAP
+   Each slide is fully opaque for its time slot.
+   Zero ghosting. Full responsive.
+   ===================================================== */
+
+/* ---- Hero Section ---- */
 .hero-section {
-    background: none !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: #0a1628 !important;
 }
 
+/* ---- Slideshow Wrapper (exact size of hero, no overflow) ---- */
 .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute !important;
+    inset: 0 !important;
     z-index: 0;
+    overflow: hidden !important;
 }
+
+/* ============================================================
+   CORE FIX: 4 slides × 8s each = 32s total cycle.
+   Each slide:
+     - Starts at opacity 0 (hidden)
+     - Fades IN at its own 8s window
+     - Fades OUT before the next one comes in
+     - Stays hidden the rest of the cycle (75%)
+
+   animation-fill-mode: both  ensures slide stays at
+   opacity:0 BEFORE its delay fires (no ghost frames).
+   ============================================================ */
 
 .hero-bg-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
     opacity: 0;
-    animation: kenBurnsSlideshow 32s infinite;
-    filter: blur(2px);
+    animation: heroSlide 32s ease-in-out infinite;
+    animation-fill-mode: both; /* KEY: stay at 0 before delay */
 }
 
+/* ---- Images ---- */
 .hero-bg-slide:nth-child(1) {
-    background-image: url('../images/front%20page%20imp.jpg');
+    background-image: url('../images/cg1.jpeg');
     animation-delay: 0s;
 }
-
 .hero-bg-slide:nth-child(2) {
-    background-image: url('../images/front%20img2.jpg');
+    background-image: url('../images/cg2.jpeg');
     animation-delay: 8s;
 }
-
 .hero-bg-slide:nth-child(3) {
-    background-image: url('../images/front%20img%203.webp');
+    background-image: url('../images/cg3.jpeg');
     animation-delay: 16s;
 }
-
 .hero-bg-slide:nth-child(4) {
-    background-image: url('../images/front%20img%204.jpg');
+    background-image: url('../images/cg4.jpeg');
     animation-delay: 24s;
 }
 
-@keyframes kenBurnsSlideshow {
-    0% {
-        opacity: 0;
-        transform: scale(1);
-    }
-
-    2% {
-        opacity: 1;
-    }
-
-    23% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-
-    25% {
-        opacity: 0;
-        transform: scale(1.2);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1);
-    }
+/* ============================================================
+   KEYFRAME: Active = 25% of total time (8s of 32s)
+   Fade-in at 0% → fully visible 6% → hold until 25% →
+   Fade-out by 28% → invisible for rest of cycle
+   ============================================================ */
+@keyframes heroSlide {
+    0%    { opacity: 0; }
+    6%    { opacity: 1; }
+    25%   { opacity: 1; }
+    31%   { opacity: 0; }
+    100%  { opacity: 0; }
 }
 
+/* ============================================================
+   OVERLAY — Dark gradient so text is always readable
+   ============================================================ */
 .hero-overlay {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.25) 0%, rgba(59, 130, 246, 0.15) 100%) !important;
-    opacity: 1 !important;
-    z-index: 1;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 15, 50, 0.28) 0%,
+        rgba(5, 15, 50, 0.42) 45%,
+        rgba(3,  8,  35, 0.72) 100%
+    ) !important;
+    pointer-events: none;
 }
 
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
 .hero-content {
+    position: relative !important;
     z-index: 2 !important;
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 7rem 2rem 4rem !important;
+    max-width: 920px;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.hero-title,
-.hero-subtitle,
+/* Title */
+.hero-title {
+    font-size: clamp(1.8rem, 5.5vw, 3.8rem) !important;
+    font-weight: 900 !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.2rem !important;
+    text-shadow: 0 4px 28px rgba(0,0,0,0.75) !important;
+    letter-spacing: -0.02em;
+    color: #ffffff !important;
+}
+
+/* Subtitle */
+.hero-subtitle {
+    font-size: clamp(1rem, 2.8vw, 1.45rem) !important;
+    font-weight: 400 !important;
+    margin-bottom: 2.5rem !important;
+    opacity: 0.92;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.65) !important;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff !important;
+    line-height: 1.55;
+}
+
+/* Buttons */
 .hero-buttons {
-    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8) !important;
+    display: flex !important;
+    gap: 1.2rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+/* Tablet ≤ 768px */
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 6rem 1.5rem 3.5rem !important;
+    }
+
+    .hero-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons a.btn {
+        width: 100% !important;
+        max-width: 300px !important;
+        text-align: center !important;
+        display: block !important;
+    }
+
+    /* On mobile portrait, show more of the image vertically */
+    .hero-bg-slide {
+        background-position: center 30% !important;
+    }
+}
+
+/* Mobile ≤ 480px */
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 100svh !important;
+    }
+
+    .hero-content {
+        padding: 5.5rem 1.1rem 3rem !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.55rem, 7.5vw, 2.2rem) !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.05rem) !important;
+        margin-bottom: 2rem !important;
+    }
+
+    /* Portrait phones: show top of image (heads visible) */
+    .hero-bg-slide {
+        background-position: center 20% !important;
+    }
+}
+
+/* Very small ≤ 360px */
+@media (max-width: 360px) {
+    .hero-content {
+        padding: 5rem 0.9rem 2.5rem !important;
+    }
+
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
 }

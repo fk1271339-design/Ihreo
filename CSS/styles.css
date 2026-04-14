@@ -199,12 +199,14 @@ ul {
 /* ===== HERO SECTION ===== */
 .hero-section {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     background: var(--gradient-primary);
-    overflow: hidden;
+    /* overflow handled in hero-background.css to prevent zoom clipping */
+    contain: layout style;
 }
 
 .hero-overlay {
