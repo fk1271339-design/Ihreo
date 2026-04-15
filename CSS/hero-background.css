@@ -20,7 +20,10 @@
 /* ---- Slideshow Wrapper (exact size of hero, no overflow) ---- */
 .hero-background {
     position: absolute !important;
-    inset: 0 !important;
+    top: 76px !important; /* Push image below opaque navbar so heads aren't hidden */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     z-index: 0;
     overflow: hidden !important;
 }
@@ -103,7 +106,7 @@
     z-index: 2 !important;
     text-align: center !important;
     color: #ffffff !important;
-    padding: 12rem 2rem 2rem !important; /* Shifted down */
+    padding: 16rem 2rem 2rem !important; /* Shifted further down */
     max-width: 920px;
     margin: 0 auto;
     width: 100%;
@@ -149,24 +152,22 @@
 /* Tablet ≤ 768px */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 65svh !important;
+        min-height: 50svh !important; /* Shrink proportionally */
     }
 
     .hero-content {
-        padding: 7rem 1.5rem 1rem !important; /* Shifted down */
+        padding: 8rem 1.5rem 1rem !important; /* Shifted further down */
     }
 
     .hero-buttons {
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: row !important;
+        justify-content: center !important;
     }
 
     .hero-buttons .btn,
     .hero-buttons a.btn {
-        width: 100% !important;
-        max-width: 300px !important;
-        text-align: center !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
     }
 
     .hero-bg-slide {
@@ -177,25 +178,37 @@
 /* Mobile ≤ 480px */
 @media (max-width: 480px) {
     .hero-section {
-        min-height: 55svh !important; /* Shorter to preserve aspect ratio and avoid cutting */
+        min-height: 45svh !important; /* Slightly increased to fit shifted image */
     }
 
     .hero-content {
-        padding: 6rem 1.1rem 1rem !important; /* Shifted down */
+        padding: 6rem 1rem 0.5rem !important; /* Text pushed further down */
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
     .hero-title {
-        font-size: clamp(1.2rem, 7vw, 1.8rem) !important;
+        font-size: 5vw !important; /* Drastically smaller text to fit like proportional shrink */
         line-height: 1.2 !important;
-        margin-bottom: 0.8rem !important;
+        margin-bottom: 0.4rem !important;
     }
 
     .hero-subtitle {
-        font-size: 0.85rem !important;
-        margin-bottom: 1.5rem !important;
+        font-size: 2.8vw !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .hero-buttons {
+        flex-direction: row !important; /* Side by side on mobile too */
+        gap: 0.5rem !important;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons a.btn {
+        width: auto !important;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 3vw !important;
     }
 
     .hero-bg-slide {
@@ -206,11 +219,11 @@
 /* Very small ≤ 360px */
 @media (max-width: 360px) {
     .hero-content {
-        padding: 7rem 0.9rem 1rem !important; /* Shifted down */
+        padding: 5rem 0.5rem 0.5rem !important; /* Text pushed further down */
     }
 
     .hero-title {
-        font-size: 1.35rem !important;
+        font-size: 1.1rem !important;
     }
 }
 
