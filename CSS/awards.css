@@ -5,10 +5,12 @@
 /* Hero with Video Background */
 .awards-hero {
   position: relative;
-  height: 70vh;
+  min-height: 70vh; /* Changed to min-height to prevent overflow */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 80px; /* Accounts for navbar */
+  padding-bottom: 40px; /* Prevents text hitting the bottom */
   overflow: hidden;
   color: white;
   text-align: center;
@@ -55,9 +57,10 @@
 }
 
 .awards-hero-title {
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 6vw, 4rem);
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.15; /* Tighten line height to bring text closer */
   text-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
@@ -86,23 +89,28 @@
 
 .video-overlay-text {
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
   z-index: 2;
   color: white;
   pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
 }
 
 .video-overlay-text span {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  opacity: 0.8;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .video-overlay-text h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-top: 5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .main-video {
@@ -206,9 +214,24 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .awards-hero {
-    height: 50vh;
+    height: auto;
+    min-height: 60vh;
+    padding-top: 100px; /* Push below navbar */
+    padding-bottom: 50px; /* Lift text off the bottom border */
   }
   .award-card.premium {
     height: 350px;
+  }
+  .video-showcase {
+    padding: 40px 15px;
+  }
+  .video-overlay-text {
+    padding: 15px;
+  }
+  .video-overlay-text h2 {
+    font-size: 1.3rem;
+  }
+  .video-overlay-text span {
+    font-size: 0.75rem;
   }
 }

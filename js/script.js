@@ -14,8 +14,54 @@ if (navbar) {
 }
 
 if (navToggle && navMenu) {
-  navToggle.addEventListener("click", function () {
+  // Inject Drawer header if it doesn't exist
+  if (!document.getElementById('mobile-drawer-header')) {
+    const drawerHeader = document.createElement('li');
+    drawerHeader.id = 'mobile-drawer-header';
+    drawerHeader.className = 'drawer-header';
+    drawerHeader.innerHTML = `
+      <div style="display:flex; align-items:center; gap: 15px; padding-bottom:1rem; border-bottom:2px solid #f1f5f9;">
+          <img src="images/ihreo 2.png" alt="IHREO Logo" style="height:45px; object-fit:contain;" />
+          <span style="color:#1e3c72; font-family:'Poppins', sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:1px;">IHREO</span>
+          <span id="drawerClose" style="color:#64748b; font-size:32px; line-height:1; padding-left:10px; margin-left:auto; cursor:pointer; font-weight:400; transition:color 0.3s;" onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='#64748b'">&times;</span>
+      </div>
+    `;
+    navMenu.insertBefore(drawerHeader, navMenu.firstChild);
+  }
+
+  // Inject Overlay if it doesn't exist
+  let overlay = document.getElementById('drawer-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'drawer-overlay';
+    overlay.className = 'drawer-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  function toggleMenu() {
     navMenu.classList.toggle("active");
+    overlay.classList.toggle("active");
+    if (navMenu.classList.contains("active")) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "";
+    }
+  }
+
+  navToggle.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", toggleMenu);
+  
+  const drawerCloseBtn = document.getElementById("drawerClose");
+  if (drawerCloseBtn) {
+    drawerCloseBtn.addEventListener("click", toggleMenu);
+  }
+
+  // Auto-close drawer if link is clicked
+  const navLinks = navMenu.querySelectorAll('.nav-link, .admin-link');
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        if (navMenu.classList.contains("active")) toggleMenu();
+    });
   });
 }
 

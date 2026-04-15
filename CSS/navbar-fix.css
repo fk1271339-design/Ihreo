@@ -207,37 +207,99 @@
     border-bottom: 1px solid rgba(139, 92, 246, 0.1) !important;
 }
 
+/* Drawer Extra Classes (Hidden on Desktop) */
+.drawer-header, .drawer-overlay {
+    display: none !important;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .nav-toggle {
         display: flex;
+        z-index: 9999;
     }
 
     .nav-menu {
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: white !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: #ffffff !important; /* Theme White Background */
         flex-direction: column !important;
-        padding: 1rem !important;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-        display: none !important;
-        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important; /* Stretch to full width so lines hit edges */
+        padding: 1.5rem 0 !important; /* 0 L/R padding so underlines run full width */
+        box-shadow: none !important;
+        display: flex !important;
+        gap: 0 !important; /* Remove flex gap, use padding for gaps to maintain underline connection */
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        z-index: 10001 !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+    }
+
+    .nav-menu li {
+        width: 100% !important;
+        list-style: none !important;
     }
 
     .nav-menu.active {
-        display: flex !important;
+        left: 0 !important;
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .drawer-header {
+        display: block !important;
+        width: 100%;
+        padding: 0 1.5rem !important; /* Keep header padded */
+        margin-bottom: 1rem !important;
+    }
+
+    .drawer-overlay.active {
+        display: block !important;
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5); /* Dim overlay */
+        backdrop-filter: blur(4px);
+        z-index: 999; /* IMPORTANT: Under navbar (1000) so menu is sharp */
+        cursor: pointer;
     }
 
     .nav-link {
         width: 100% !important;
-        text-align: center !important;
+        display: block !important;
+        text-align: left !important;
+        color: #1e3c72 !important; /* High contrast blue */
+        padding: 1.2rem 2rem !important; /* HUGE Vertical spacing to push items towards the middle */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important; /* Clear horizontal line */
+        border-radius: 0 !important; /* Flat edges for full-width lines */
+        background: transparent !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        text-transform: capitalize !important;
+        margin: 0 !important;
+    }
+    
+    .nav-link::before, .nav-link::after {
+        display: none !important;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+        background: rgba(30, 60, 114, 0.04) !important;
+        color: #ef4444 !important; /* Highlight color */
+        transform: none !important; /* Removed jump logic */
+        padding-left: 2.3rem !important; /* Shift text slightly on hover instead */
+        transition: all 0.3s ease !important;
+        box-shadow: none !important;
     }
 
     .admin-link {
         margin-left: 0 !important;
-        margin-top: 0.5rem !important;
+        margin-top: 2rem !important;
         text-align: center !important;
+        width: 100% !important;
     }
 }
