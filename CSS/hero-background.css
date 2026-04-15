@@ -26,10 +26,10 @@
 }
 
 /* ============================================================
-   CORE FIX: 4 slides × 8s each = 32s total cycle.
+   CORE FIX: 4 slides × 6s each = 24s total cycle.
    Each slide:
      - Starts at opacity 0 (hidden)
-     - Fades IN at its own 8s window
+     - Fades IN at its own 6s window
      - Fades OUT before the next one comes in
      - Stays hidden the rest of the cycle (75%)
 
@@ -41,10 +41,10 @@
     position: absolute !important;
     inset: 0 !important;
     background-size: cover !important;
-    background-position: center center !important;
+    background-position: center top !important;
     background-repeat: no-repeat !important;
     opacity: 0;
-    animation: heroSlide 32s ease-in-out infinite;
+    animation: heroSlide 24s ease-in-out infinite;
     animation-fill-mode: both; /* KEY: stay at 0 before delay */
 }
 
@@ -55,19 +55,19 @@
 }
 .hero-bg-slide:nth-child(2) {
     background-image: url('../images/cg2.jpeg');
-    animation-delay: 8s;
+    animation-delay: 6s;
 }
 .hero-bg-slide:nth-child(3) {
     background-image: url('../images/cg3.jpeg');
-    animation-delay: 16s;
+    animation-delay: 12s;
 }
 .hero-bg-slide:nth-child(4) {
     background-image: url('../images/cg4.jpeg');
-    animation-delay: 24s;
+    animation-delay: 18s;
 }
 
 /* ============================================================
-   KEYFRAME: Active = 25% of total time (8s of 32s)
+   KEYFRAME: Active = 25% of total time (6s of 24s)
    Fade-in at 0% → fully visible 6% → hold until 25% →
    Fade-out by 28% → invisible for rest of cycle
    ============================================================ */
@@ -103,7 +103,7 @@
     z-index: 2 !important;
     text-align: center !important;
     color: #ffffff !important;
-    padding: 7rem 2rem 4rem !important;
+    padding: 12rem 2rem 2rem !important; /* Shifted down */
     max-width: 920px;
     margin: 0 auto;
     width: 100%;
@@ -148,8 +148,12 @@
 
 /* Tablet ≤ 768px */
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 65svh !important;
+    }
+
     .hero-content {
-        padding: 6rem 1.5rem 3.5rem !important;
+        padding: 7rem 1.5rem 1rem !important; /* Shifted down */
     }
 
     .hero-buttons {
@@ -165,42 +169,44 @@
         display: block !important;
     }
 
-    /* On mobile portrait, show more of the image vertically */
     .hero-bg-slide {
-        background-position: center 30% !important;
+        background-position: center top !important;
     }
 }
 
 /* Mobile ≤ 480px */
 @media (max-width: 480px) {
     .hero-section {
-        min-height: 80svh !important; /* Shorter for better image visibility */
+        min-height: 55svh !important; /* Shorter to preserve aspect ratio and avoid cutting */
     }
 
     .hero-content {
-        padding: 4.5rem 1.1rem 3rem !important;
+        padding: 6rem 1.1rem 1rem !important; /* Shifted down */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .hero-title {
-        font-size: clamp(1.4rem, 8vw, 2rem) !important;
+        font-size: clamp(1.2rem, 7vw, 1.8rem) !important;
         line-height: 1.2 !important;
+        margin-bottom: 0.8rem !important;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem !important;
-        margin-bottom: 2rem !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 1.5rem !important;
     }
 
-    /* Portrait phones: show top of image (heads visible) */
     .hero-bg-slide {
-        background-position: center 15% !important;
+        background-position: center top !important;
     }
 }
 
 /* Very small ≤ 360px */
 @media (max-width: 360px) {
     .hero-content {
-        padding: 5rem 0.9rem 2.5rem !important;
+        padding: 7rem 0.9rem 1rem !important; /* Shifted down */
     }
 
     .hero-title {
